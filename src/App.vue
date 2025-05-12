@@ -1,22 +1,20 @@
 <template>
 	<div id="app">
-		<Employee :name="employeeName" :surn="employeeSurn" :age="employeeAge" />
+		<User :items="items" />
 	</div>
 </template>
 
 <script>
-import Employee from './components/Employee.vue';
+import User from './components/Employee.vue';
 
 export default {
 	name: 'App',
 	components: {
-		Employee
+		User
 	},
 	data() {
 		return {
-			employeeName: 'Jogn',
-			employeeSurn: 'Smit',
-			employeeAge: 30
+			items: ['Apple', 'Banana', 'Orange', 'Grapes']
 		};
 	}
 };
