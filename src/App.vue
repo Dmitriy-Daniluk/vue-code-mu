@@ -1,67 +1,95 @@
 <template>
-  <div>
-    <h1>Чеклист</h1>
-    <TodoForm @add="addTodo" />
-    <ul>
-      <li v-for="(todo, index) in todos" :key="todo.id" :class="{ completed: todo.completed }">
-        <span v-if="!todo.isEdit" @click="toggleComplete(todo.id)">
-          {{ todo.text }}
-        </span>
-        <input v-if="todo.isEdit" v-model="todo.newText" />
-        <button @click="remove(todo.id)">Удалить</button>
-        <button @click="edit(todo.id)">{{ todo.isEdit ? 'Сохранить' : 'Редактировать' }}</button>
-      </li>
-    </ul>
-  </div>
+	<div>
+		<h1>Блокнот</h1>
+
+		<div class="notebook">
+			<div class="menu">
+				<h2>Записи</h2>
+				<ul>
+					<li v-for="(note, index) in filteredNotes" :key="note.id">
+						<button @click="selectNote(index)">
+							{{ note.title }}
+						</button>
+						<button @click="removeNote(index)">Удалить</button>
+					</li>
+				</ul>
+				<input v-model="searchQuery" placeholder="Поиск..." />
+			</div>
+
+			<div class="editor">
+				<h2>Редактировать запись</h2>
+				<textarea v-model="currentNote.text" placeholder="Напишите что-то..."></textarea>
+				<button @click="saveNote">Сохранить</button>
+			</div>
+		</div>
+
+		<button @click="addNote">Добавить новую запись</button>
+	</div>
 </template>
 
 <script>
-import TodoForm from './components/TodoForm.vue';
-
 export default {
-  components: {
-    TodoForm,
-  },
-  data() {
-    return {
-      todos: [],
-    };
-  },
-  methods: {
-    addTodo(text) {
-      const newTodo = {
-        id: Date.now(),
-        text,
-        completed: false,
-        isEdit: false,
-        newText: text,
-      };
-      this.todos.push(newTodo);
-    },
-    remove(id) {
-      this.todos = this.todos.filter(todo => todo.id !== id);
-    },
-    toggleComplete(id) {
-      const todo = this.todos.find(todo => todo.id === id);
-      if (todo) {
-        todo.completed = !todo.completed;
-      }
-    },
-    edit(id) {
-      const todo = this.todos.find(todo => todo.id === id);
-      if (todo) {
-        if (todo.isEdit) {
-          todo.text = todo.newText;
-        }
-        todo.isEdit = !todo.isEdit;
-      }
-    },
-  },
+	data() {
+		return {
+			notes: [],
+			currentNote: { title: '', text: '' },
+			searchQuery: '',
+		};
+	},
+	computed: {
+		filteredNotes() {
+			return this.notes.filter(note =>
+				note.title.toLowerCase().includes(this.searchQuery.toLowerCase())
+			);
+		},
+	},
+	methods: {
+		addNote() {
+			const newNote = { id: Date.now(), title: `Запись ${this.notes.length + 1}`, text: '' };
+			this.notes.push(newNote);
+			this.selectNote(this.notes.length - 1);
+		},
+		selectNote(index) {
+			this.currentNote = { ...this.notes[index] };
+		},
+		saveNote() {
+			const index = this.notes.findIndex(note => note.id === this.currentNote.id);
+			if (index !== -1) {
+				this.notes[index] = { ...this.currentNote };
+			}
+		},
+		removeNote(index) {
+			this.notes.splice(index, 1);
+			if (this.notes.length > 0) {
+				this.selectNote(0);
+			} else {
+				this.currentNote = { title: '', text: '' };
+			}
+		},
+	},
 };
 </script>
 
 <style>
-.completed {
-  text-decoration: line-through;
+.notebook {
+	display: flex;
+	justify-content: space-between;
+}
+
+.menu {
+	width: 200px;
+}
+
+.editor {
+	width: 300px;
+}
+
+textarea {
+	width: 100%;
+	height: 200px;
+}
+
+button {
+	margin-top: 10px;
 }
 </style>
