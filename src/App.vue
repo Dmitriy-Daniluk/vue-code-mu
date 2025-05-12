@@ -1,44 +1,25 @@
 <template>
 	<div>
-		<!-- Текст с применением CSS классов -->
-		<p :class="obj">text</p>
-
-		<!-- Кнопки для изменения видимости элемента -->
-		<button @click="showElement">Show</button>
-		<button @click="hideElement">Hide</button>
-		<button @click="toggleElement">Toggle</button>
+		<!-- Тег с инлайн объектом с классами -->
+		<p :class="{ active: true, valid: false }">text</p>
 	</div>
 </template>
 
 <script>
 export default {
 	data() {
-		return {
-			obj: {
-				hidden: true,
-			},
-		};
-	},
-	methods: {
-		// Показывает элемент
-		showElement() {
-			this.obj.hidden = false;
-		},
-		// Скрывает элемент
-		hideElement() {
-			this.obj.hidden = true;
-		},
-		// Тогглит видимость элемента
-		toggleElement() {
-			this.obj.hidden = !this.obj.hidden;
-		},
-	},
+		return {};
+	}
 };
 </script>
 
 <style>
-/* Стили для скрытия текста */
-p.hidden {
-	display: none;
+/* Стили для классов */
+.active {
+	color: green;
+}
+
+.valid {
+	color: red;
 }
 </style>
