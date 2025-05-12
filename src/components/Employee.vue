@@ -8,6 +8,10 @@
 
 <script>
 export default {
-	props: ['name', 'salary', 'age']
+	props: {
+		name: String,
+		salary: Number,
+		age: Number
+	}
 }
 </script>
