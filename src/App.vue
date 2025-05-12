@@ -1,18 +1,26 @@
 <template>
 	<div>
-		<!-- Кнопки с передачей параметров -->
-		<button @click="showSquare(2)">Показать квадрат 2</button>
-		<button @click="showSquare(3)">Показать квадрат 3</button>
+		<!-- Выводим текст -->
+		<p>{{ text }}</p>
+
+		<!-- Кнопки для изменения значения свойства text -->
+		<button @click="changeText('Первое значение')">Кнопка 1</button>
+		<button @click="changeText('Второе значение')">Кнопка 2</button>
 	</div>
 </template>
 
 <script>
 export default {
 	name: 'App',
+	data() {
+		return {
+			text: 'Начальное значение',
+		};
+	},
 	methods: {
-		// Метод принимает число и выводит его квадрат
-		showSquare(num) {
-			alert(num * num);
+		// Метод для изменения значения text
+		changeText(newText) {
+			this.text = newText;
 		}
 	}
 }
