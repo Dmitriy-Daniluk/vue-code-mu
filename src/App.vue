@@ -1,14 +1,22 @@
 <template>
-	<p v-if="age < 18">Подросток</p>
-	<p v-else-if="age >= 19 && age <= 25">Молодой человек</p>
-	<p v-else>Мужчина</p>
+	<button @click="toggleVisibility">Скрыть абзацы</button>
+	<template v-if="isVisible">
+		<p>Абзац 1</p>
+		<p>Абзац 2</p>
+		<p>Абзац 3</p>
+	</template>
 </template>
 
 <script>
 export default {
 	data() {
 		return {
-			age: 25,
+			isVisible: true
+		}
+	},
+	methods: {
+		toggleVisibility() {
+			this.isVisible = !this.isVisible;
 		}
 	}
 }
