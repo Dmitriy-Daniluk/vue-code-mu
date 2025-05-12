@@ -1,17 +1,15 @@
 <template>
 	<div>
-		<!-- Группа radio для выбора родного языка -->
-		<input name="language" type="radio" v-model="nativeLanguage" value="English"> English
-		<input name="language" type="radio" v-model="nativeLanguage" value="Spanish"> Spanish
-		<input name="language" type="radio" v-model="nativeLanguage" value="French"> French
+		<!-- Выпадающий список для выбора города -->
+		<select v-model="selectedCity">
+			<option>New York</option>
+			<option>Los Angeles</option>
+			<option>Chicago</option>
+			<option>San Francisco</option>
+		</select>
 
-		<!-- Вывод выбранного языка -->
-		<p>You have chosen: {{ nativeLanguage }}</p>
-
-		<!-- В зависимости от выбора выводим текст на соответствующем языке -->
-		<p v-if="nativeLanguage === 'English'">Hello, how are you?</p>
-		<p v-if="nativeLanguage === 'Spanish'">Hola, ¿cómo estás?</p>
-		<p v-if="nativeLanguage === 'French'">Bonjour, comment ça va?</p>
+		<!-- Вывод выбранного города -->
+		<p>You live in: {{ selectedCity }}</p>
 	</div>
 </template>
 
@@ -19,8 +17,8 @@
 export default {
 	data() {
 		return {
-			// Переменная для хранения выбранного языка
-			nativeLanguage: '',
+			// Переменная для хранения выбранного города
+			selectedCity: 'New York', // Значение по умолчанию
 		};
 	},
 };
