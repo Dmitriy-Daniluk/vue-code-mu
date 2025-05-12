@@ -1,12 +1,15 @@
 <template>
-	<p :class="cssClasses">text</p>
+	<p :class="obj">text</p>
 </template>
 
 <script>
 export default {
 	data() {
 		return {
-			cssClasses: 'active valid'
+			obj: {
+				done: true,
+				selected: false
+			}
 		}
 	}
 }
