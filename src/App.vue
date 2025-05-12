@@ -1,15 +1,10 @@
 <template>
 	<div>
-		<!-- Задача 1: Текст из textarea в абзаце -->
-		<textarea v-model="text"></textarea>
-		<p>{{ text }}</p>
+		<!-- Checkbox с привязкой к свойству checked -->
+		<input type="checkbox" v-model="checked">
 
-		<!-- Задача 2: Разделение текста на слова и вывод в список -->
-		<textarea v-model="textInput"></textarea>
-		<button @click="generateWordList">Generate Word List</button>
-		<ul>
-			<li v-for="(word, index) in wordList" :key="index">{{ word }}</li>
-		</ul>
+		<!-- Абзац, который будет показан или скрыт в зависимости от состояния checkbox -->
+		<p v-if="checked">Этот абзац отображается, если checkbox отмечен.</p>
 	</div>
 </template>
 
@@ -17,17 +12,8 @@
 export default {
 	data() {
 		return {
-			text: '',
-			textInput: '',
-			wordList: []
+			checked: false, // Изначально checkbox не отмечен
 		};
 	},
-	methods: {
-		// Задача 2: Получение массива слов из текста
-		generateWordList() {
-			// Разбиваем текст на массив слов
-			this.wordList = this.textInput.split(/\s+/).filter(word => word.length > 0);
-		}
-	}
 };
 </script>
