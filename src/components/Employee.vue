@@ -1,17 +1,24 @@
 <template>
 	<div>
-		<p>Name: {{ name }}</p>
-		<p>Salary: {{ salary }}</p>
-		<p>Age: {{ age }}</p>
+		<button @click="handleAction1">Action 1</button>
+		<button @click="handleAction2">Action 2</button>
 	</div>
 </template>
 
 <script>
 export default {
-	props: {
-		name: String,
-		salary: Number,
-		age: Number
-	}
-}
+	props: ['action1', 'action2'],
+	methods: {
+		handleAction1() {
+			this.$emit('action1');
+		},
+		handleAction2() {
+			this.$emit('action2');
+		},
+	},
+};
 </script>
+
+<style>
+/* Стили компонента */
+</style>
