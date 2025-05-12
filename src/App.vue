@@ -1,34 +1,22 @@
 <template>
-	<div>
-		<!-- Выводим вычисляемое свойство price -->
-		<p>Цена за один продукт: {{ cost }}</p>
-		<p>Количество продуктов: {{ amount }}</p>
-		<p>Полная стоимость: {{ price }}</p>
+	<!-- Ссылка с обработчиком события и модификатором prevent -->
+	<a href="https://yandex.ru" @click.prevent="handleLinkClick">Click me</a>
 
-		<!-- Кнопка для изменения стоимости -->
-		<button @click="increaseCost">Увеличить цену</button>
-	</div>
+	<!-- Кнопка с обработчиком события, срабатывающего только один раз -->
+	<button @click.once="handleButtonClick">Click me once</button>
 </template>
 
 <script>
 export default {
-	name: 'App',
-	data() {
-		return {
-			cost: 100,  // Цена одного продукта
-			amount: 5,  // Количество продуктов
-		};
-	},
-	computed: {
-		// Вычисляемое свойство для полной стоимости
-		price() {
-			return this.cost * this.amount;
-		}
-	},
 	methods: {
-		// Метод для изменения стоимости
-		increaseCost() {
-			this.cost += 10;  // Увеличиваем цену на 10
+		// Обработчик клика по ссылке
+		handleLinkClick() {
+			alert('Ссылка была нажата, но переход не произошел!');
+		},
+
+		// Обработчик клика по кнопке
+		handleButtonClick() {
+			alert('Вы кликнули по кнопке первый раз!');
 		}
 	}
 }
