@@ -1,13 +1,18 @@
 <template>
-	<p v-if="isAdmin">Admin</p>
-	<p v-else>User</p>
+	<p v-if="day === 1">Понедельник</p>
+	<p v-if="day === 2">Вторник</p>
+	<p v-if="day === 3">Среда</p>
+	<p v-if="day === 4">Четверг</p>
+	<p v-if="day === 5">Пятница</p>
+	<p v-if="day === 6">Суббота</p>
+	<p v-if="day === 7">Воскресенье</p>
 </template>
 
 <script>
 export default {
 	data() {
 		return {
-			isAdmin: true, // или false
+			day: 3,
 		}
 	}
 }
