@@ -1,16 +1,17 @@
 <template>
 	<div>
-		<!-- Группа checkbox для выбора языков -->
-		<input type="checkbox" v-model="languages" value="English"> English
-		<input type="checkbox" v-model="languages" value="Spanish"> Spanish
-		<input type="checkbox" v-model="languages" value="French"> French
-		<input type="checkbox" v-model="languages" value="German"> German
-		<input type="checkbox" v-model="languages" value="Russian"> Russian
+		<!-- Группа radio для выбора родного языка -->
+		<input name="language" type="radio" v-model="nativeLanguage" value="English"> English
+		<input name="language" type="radio" v-model="nativeLanguage" value="Spanish"> Spanish
+		<input name="language" type="radio" v-model="nativeLanguage" value="French"> French
 
-		<!-- Список языков, выбранных пользователем -->
-		<ul>
-			<li v-for="(language, index) in languages" :key="index">{{ language }}</li>
-		</ul>
+		<!-- Вывод выбранного языка -->
+		<p>You have chosen: {{ nativeLanguage }}</p>
+
+		<!-- В зависимости от выбора выводим текст на соответствующем языке -->
+		<p v-if="nativeLanguage === 'English'">Hello, how are you?</p>
+		<p v-if="nativeLanguage === 'Spanish'">Hola, ¿cómo estás?</p>
+		<p v-if="nativeLanguage === 'French'">Bonjour, comment ça va?</p>
 	</div>
 </template>
 
@@ -18,8 +19,8 @@
 export default {
 	data() {
 		return {
-			// Массив для хранения выбранных языков
-			languages: [],
+			// Переменная для хранения выбранного языка
+			nativeLanguage: '',
 		};
 	},
 };
