@@ -1,11 +1,12 @@
 <template>
 	<div>
-		<!-- Выводим текст -->
-		<p>{{ text }}</p>
+		<!-- Выводим вычисляемое свойство price -->
+		<p>Цена за один продукт: {{ cost }}</p>
+		<p>Количество продуктов: {{ amount }}</p>
+		<p>Полная стоимость: {{ price }}</p>
 
-		<!-- Кнопки для изменения значения свойства text -->
-		<button @click="changeText('Первое значение')">Кнопка 1</button>
-		<button @click="changeText('Второе значение')">Кнопка 2</button>
+		<!-- Кнопка для изменения стоимости -->
+		<button @click="increaseCost">Увеличить цену</button>
 	</div>
 </template>
 
@@ -14,13 +15,20 @@ export default {
 	name: 'App',
 	data() {
 		return {
-			text: 'Начальное значение',
+			cost: 100,  // Цена одного продукта
+			amount: 5,  // Количество продуктов
 		};
 	},
+	computed: {
+		// Вычисляемое свойство для полной стоимости
+		price() {
+			return this.cost * this.amount;
+		}
+	},
 	methods: {
-		// Метод для изменения значения text
-		changeText(newText) {
-			this.text = newText;
+		// Метод для изменения стоимости
+		increaseCost() {
+			this.cost += 10;  // Увеличиваем цену на 10
 		}
 	}
 }
