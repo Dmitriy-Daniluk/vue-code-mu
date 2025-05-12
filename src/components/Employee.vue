@@ -1,24 +1,13 @@
 <template>
-	<ul>
-		<li v-for="(item, index) in items" :key="index">
-			{{ item }}
-		</li>
-	</ul>
+	<div>
+		<p>Name: {{ name }}</p>
+		<p>Salary: {{ salary }}</p>
+		<p>Age: {{ age }}</p>
+	</div>
 </template>
 
 <script>
 export default {
-	props: ['items']
-};
+	props: ['name', 'salary', 'age']
+}
 </script>
-
-<style scoped>
-ul {
-	list-style-type: none;
-	padding: 0;
-}
-
-li {
-	margin: 5px 0;
-}
-</style>
