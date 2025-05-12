@@ -1,17 +1,24 @@
 <template>
 	<div>
-		<!-- Задание 1 -->
-		<input v-model="text" @keyup.enter="showText" />
-		<p>{{ text }}</p>
+		<!-- Задание 1: Добавление в конец массива -->
+		<input v-model="newItem" />
+		<button @click="addItem">Add</button>
 
-		<!-- Задание 2 -->
-		<a href="#" @click.ctrl="showCtrlText">Click me</a>
-		<p>{{ ctrlText }}</p>
+		<ul>
+			<li v-for="(item, index) in items" :key="index">
+				{{ item }}
+			</li>
+		</ul>
 
-		<!-- Задание 3 -->
-		<a href="#" @mousedown.left="showLeftClick" @mousedown.right="showRightClick"
-			@mousedown.middle="showMiddleClick">Click me with mouse buttons</a>
-		<p>{{ mouseText }}</p>
+		<!-- Задание 2: Добавление в начало массива -->
+		<input v-model="newItem" />
+		<button @click="addItemToStart">Add to Start</button>
+
+		<ul>
+			<li v-for="(item, index) in items" :key="index">
+				{{ item }}
+			</li>
+		</ul>
 	</div>
 </template>
 
@@ -19,26 +26,18 @@
 export default {
 	data() {
 		return {
-			text: '',
-			ctrlText: '',
-			mouseText: ''
+			newItem: '',
+			items: ['a', 'b', 'c', 'd', 'e'],
 		};
 	},
 	methods: {
-		showText() {
-			this.ctrlText = this.text;
+		addItem() {
+			this.items.push(this.newItem);
+			this.newItem = ''; // Очистка инпута после добавления
 		},
-		showCtrlText() {
-			this.ctrlText = 'Ctrl key was pressed!';
-		},
-		showLeftClick() {
-			this.mouseText = 'left';
-		},
-		showRightClick() {
-			this.mouseText = 'right';
-		},
-		showMiddleClick() {
-			this.mouseText = 'middle';
+		addItemToStart() {
+			this.items.unshift(this.newItem);
+			this.newItem = ''; // Очистка инпута после добавления
 		}
 	}
 };
