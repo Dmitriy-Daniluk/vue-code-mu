@@ -1,6 +1,5 @@
 <template>
-	<div>{{ name }}</div>
-	<div>{{ surn }}</div>
+	<a :href="href">{{ text }}</a>
 </template>
 
 <script>
@@ -8,8 +7,8 @@ export default {
 	name: 'App',
 	data() {
 		return {
-			name: 'john',
-			surn: 'smit'
+			text: 'page',
+			href: 'page.html'
 		};
 	}
 }
