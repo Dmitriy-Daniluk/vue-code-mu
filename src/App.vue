@@ -1,21 +1,16 @@
 <template>
 	<div>
-		<!-- Задание 1 -->
-		<h2>Задание 1: Показать абзац</h2>
-		<button @click="show">show</button>
-		<p v-if="visible">text</p>
+		<!-- Абзац 1 -->
+		<button @click="toggle(1)">toggle 1</button>
+		<p v-if="visible1">text 1</p>
 
-		<!-- Задание 2 -->
-		<h2>Задание 2: Показать и скрыть абзац</h2>
-		<button @click="show">show</button>
-		<button @click="hide">hide</button>
-		<p v-if="visible">text</p>
+		<!-- Абзац 2 -->
+		<button @click="toggle(2)">toggle 2</button>
+		<p v-if="visible2">text 2</p>
 
-		<!-- Задание 3 -->
-		<h2>Задание 3: Показать только одну кнопку в зависимости от состояния</h2>
-		<button v-if="!visible" @click="show">show</button>
-		<button v-if="visible" @click="hide">hide</button>
-		<p v-if="visible">text</p>
+		<!-- Абзац 3 -->
+		<button @click="toggle(3)">toggle 3</button>
+		<p v-if="visible3">text 3</p>
 	</div>
 </template>
 
@@ -23,15 +18,14 @@
 export default {
 	data() {
 		return {
-			visible: false,
+			visible1: false,
+			visible2: false,
+			visible3: false,
 		}
 	},
 	methods: {
-		show() {
-			this.visible = true;
-		},
-		hide() {
-			this.visible = false;
+		toggle(number) {
+			this[`visible${number}`] = !this[`visible${number}`];
 		}
 	}
 }
