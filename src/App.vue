@@ -1,7 +1,10 @@
 <template>
 	<div>
-		<p>Квадрат числа num: {{ num * num }}</p>
-		<p>Сумма num1, num2 и num3: {{ num1 + num2 + num3 }}</p>
+		<p>{{ arr1[0] }}</p>
+		<p>{{ arr1[1] }}</p>
+		<p>{{ arr1[2] }}</p>
+
+		<p>Сумма: {{ arr2[0] + arr2[1] + arr2[2] }}</p>
 	</div>
 </template>
 
@@ -10,10 +13,8 @@ export default {
 	name: 'App',
 	data() {
 		return {
-			num: 5,
-			num1: 1,
-			num2: 2,
-			num3: 3
+			arr1: ['x', 'y', 'z'],
+			arr2: [1, 2, 3]
 		};
 	}
 }
