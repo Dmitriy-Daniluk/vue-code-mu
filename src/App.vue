@@ -1,11 +1,17 @@
 <template>
 	<div>
-		<!-- Кнопка для блокировки и разблокировки инпута -->
-		<input v-bind:disabled="isDisabled" type="text" />
-		<button @click="toggleInput">Toggle Disabled</button>
+		<!-- Задание 1 -->
+		<input v-model="text" @keyup.enter="showText" />
+		<p>{{ text }}</p>
 
-		<!-- Чекбокс для регулирования состояния инпута -->
-		<input type="checkbox" v-model="isDisabled"> Enable Input
+		<!-- Задание 2 -->
+		<a href="#" @click.ctrl="showCtrlText">Click me</a>
+		<p>{{ ctrlText }}</p>
+
+		<!-- Задание 3 -->
+		<a href="#" @mousedown.left="showLeftClick" @mousedown.right="showRightClick"
+			@mousedown.middle="showMiddleClick">Click me with mouse buttons</a>
+		<p>{{ mouseText }}</p>
 	</div>
 </template>
 
@@ -13,12 +19,26 @@
 export default {
 	data() {
 		return {
-			isDisabled: true, // Начальное состояние инпута заблокировано
+			text: '',
+			ctrlText: '',
+			mouseText: ''
 		};
 	},
 	methods: {
-		toggleInput() {
-			this.isDisabled = !this.isDisabled;
+		showText() {
+			this.ctrlText = this.text;
+		},
+		showCtrlText() {
+			this.ctrlText = 'Ctrl key was pressed!';
+		},
+		showLeftClick() {
+			this.mouseText = 'left';
+		},
+		showRightClick() {
+			this.mouseText = 'right';
+		},
+		showMiddleClick() {
+			this.mouseText = 'middle';
 		}
 	}
 };
