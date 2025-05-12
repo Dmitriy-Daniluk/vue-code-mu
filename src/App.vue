@@ -1,12 +1,16 @@
 <template>
-  <div>
-    <h1>Привет, Vue!</h1>
-    <p>Я учусь Vue по code.mu</p>
-  </div>
+	<div>{{ name }}</div>
+	<div>{{ surn }}</div>
 </template>
 
 <script>
 export default {
-  name: 'App'
+	name: 'App',
+	data() {
+		return {
+			name: 'john',
+			surn: 'smit'
+		};
+	}
 }
 </script>
