@@ -1,10 +1,16 @@
 <template>
 	<div>
-		<!-- Checkbox с привязкой к свойству checked -->
-		<input type="checkbox" v-model="checked">
+		<!-- Группа checkbox для выбора языков -->
+		<input type="checkbox" v-model="languages" value="English"> English
+		<input type="checkbox" v-model="languages" value="Spanish"> Spanish
+		<input type="checkbox" v-model="languages" value="French"> French
+		<input type="checkbox" v-model="languages" value="German"> German
+		<input type="checkbox" v-model="languages" value="Russian"> Russian
 
-		<!-- Абзац, который будет показан или скрыт в зависимости от состояния checkbox -->
-		<p v-if="checked">Этот абзац отображается, если checkbox отмечен.</p>
+		<!-- Список языков, выбранных пользователем -->
+		<ul>
+			<li v-for="(language, index) in languages" :key="index">{{ language }}</li>
+		</ul>
 	</div>
 </template>
 
@@ -12,7 +18,8 @@
 export default {
 	data() {
 		return {
-			checked: false, // Изначально checkbox не отмечен
+			// Массив для хранения выбранных языков
+			languages: [],
 		};
 	},
 };
