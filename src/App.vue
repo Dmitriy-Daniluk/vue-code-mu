@@ -1,14 +1,12 @@
 <template>
-	<p v-if="visible">Первый абзац (visible = true)</p>
-
-	<p v-if="!visible">Второй абзац (visible = false)</p>
+	<p v-if="!hidden">text</p>
 </template>
 
 <script>
 export default {
 	data() {
 		return {
-			visible: true,
+			hidden: true,
 		};
 	}
 }
