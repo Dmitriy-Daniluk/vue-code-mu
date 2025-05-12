@@ -1,37 +1,67 @@
 <template>
   <div>
-    <UserForm @add="add" />
-    <div v-for="user in users" :key="user.id">
-      {{ user.name }} {{ user.surn }}
-    </div>
+    <h1>Чеклист</h1>
+    <TodoForm @add="addTodo" />
+    <ul>
+      <li v-for="(todo, index) in todos" :key="todo.id" :class="{ completed: todo.completed }">
+        <span v-if="!todo.isEdit" @click="toggleComplete(todo.id)">
+          {{ todo.text }}
+        </span>
+        <input v-if="todo.isEdit" v-model="todo.newText" />
+        <button @click="remove(todo.id)">Удалить</button>
+        <button @click="edit(todo.id)">{{ todo.isEdit ? 'Сохранить' : 'Редактировать' }}</button>
+      </li>
+    </ul>
   </div>
 </template>
 
 <script>
-import UserForm from './components/UserForm.vue';
+import TodoForm from './components/TodoForm.vue';
 
 export default {
   components: {
-    UserForm,
+    TodoForm,
   },
   data() {
     return {
-      users: [
-        { id: 1, name: 'name1', surn: 'surn1' },
-        { id: 2, name: 'name2', surn: 'surn2' },
-        { id: 3, name: 'name3', surn: 'surn3' },
-      ],
+      todos: [],
     };
   },
   methods: {
-    add(name, surn) {
-      let id = this.users.length + 1;
-      this.users.push({
-        id,
-        name,
-        surn,
-      });
+    addTodo(text) {
+      const newTodo = {
+        id: Date.now(),
+        text,
+        completed: false,
+        isEdit: false,
+        newText: text,
+      };
+      this.todos.push(newTodo);
+    },
+    remove(id) {
+      this.todos = this.todos.filter(todo => todo.id !== id);
+    },
+    toggleComplete(id) {
+      const todo = this.todos.find(todo => todo.id === id);
+      if (todo) {
+        todo.completed = !todo.completed;
+      }
+    },
+    edit(id) {
+      const todo = this.todos.find(todo => todo.id === id);
+      if (todo) {
+        if (todo.isEdit) {
+          todo.text = todo.newText;
+        }
+        todo.isEdit = !todo.isEdit;
+      }
     },
   },
 };
 </script>
+
+<style>
+.completed {
+  text-decoration: line-through;
+}
+</style>
