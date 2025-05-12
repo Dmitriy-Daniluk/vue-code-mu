@@ -1,10 +1,12 @@
 <template>
 	<div>
-		<p>{{ arr1[0] }}</p>
-		<p>{{ arr1[1] }}</p>
-		<p>{{ arr1[2] }}</p>
+		<!-- Вывод значений объекта -->
+		<p>{{ obj.a }}</p>
+		<p>{{ obj.b }}</p>
+		<p>{{ obj.c }}</p>
 
-		<p>Сумма: {{ arr2[0] + arr2[1] + arr2[2] }}</p>
+		<!-- Сумма элементов объекта -->
+		<p>Сумма: {{ obj.x + obj.y + obj.z }}</p>
 	</div>
 </template>
 
@@ -13,8 +15,7 @@ export default {
 	name: 'App',
 	data() {
 		return {
-			arr1: ['x', 'y', 'z'],
-			arr2: [1, 2, 3]
+			obj: { x: 1, y: 2, z: 3 }
 		};
 	}
 }
