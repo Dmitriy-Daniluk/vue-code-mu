@@ -1,8 +1,16 @@
 <template>
+	<div>
+		<template v-for="elem in items" :key="elem">
+			<p>{{ elem }}</p>
+			<p class="divider"></p>
+		</template>
+	</div>
+
 	<ul>
-		<li v-for="(value, key, index) in obj" :key="key">
-			{{ key }} - {{ value }} - {{ index + 1 }}
-		</li>
+		<template v-for="elem in items" :key="elem">
+			<li>{{ elem }}</li>
+			<li class="divider"></li>
+		</template>
 	</ul>
 </template>
 
@@ -10,11 +18,7 @@
 export default {
 	data() {
 		return {
-			obj: {
-				user1: '100$',
-				user2: '200$',
-				user3: '300$',
-			},
+			items: [1, 2, 3],
 		};
 	},
 };
