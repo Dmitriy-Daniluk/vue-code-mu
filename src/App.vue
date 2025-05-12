@@ -1,6 +1,8 @@
 <template>
 	<ul>
-		<li v-for="(elem, key) in arr" :key="key">{{ key }}</li>
+		<li v-for="(value, key, index) in obj" :key="key">
+			{{ key }} - {{ value }} - {{ index + 1 }}
+		</li>
 	</ul>
 </template>
 
@@ -8,7 +10,11 @@
 export default {
 	data() {
 		return {
-			arr: ['x', 'y', 'z'],
+			obj: {
+				user1: '100$',
+				user2: '200$',
+				user3: '300$',
+			},
 		};
 	},
 };
